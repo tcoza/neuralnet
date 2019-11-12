@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+
+i=0
+d=$(( 7 + $2 * (28*28+10) ))
+e=$(( $d + (28*28) ))
+each $1 -d $d -e $e | hexcat | while read line
+do
+[ $line -eq "00" ] && echo -n " "
+[ $line -eq "01" ] && echo -n "*"
+[ $(( i % 28 )) -eq 0 ] && echo
+let i++
+done
+echo
